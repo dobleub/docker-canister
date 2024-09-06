@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: icp-azle-201
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      - .:/app
+      - ./networks.json:/root/.config/dfx/networks.json
+      - node_modules:/app/node_modules
+      - ./logs:/root/.npm/_logs
+    ports:
+      # Expose 4943 in host to 4944 in container
+      - "4943:4943"
+    networks:
+      - canister
+    
+volumes:
+  node_modules:
+
+networks:
+  canister:
+    driver: bridge
