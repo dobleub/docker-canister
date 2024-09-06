@@ -1,13 +1,13 @@
 #!/bin/bash
+# Add cargo to the PATH
+echo 'source $HOME/.cargo/env' >> ~/.bashrc
+# Add DFX to the PATH
+echo 'export PATH=$HOME/.local/share/dfx/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
 
 if [ -f nohup.out ]; then
   exit 0
 else
-  # Add cargo to the PATH
-  echo 'source $HOME/.cargo/env' >> ~/.bashrc
-  # Add DFX to the PATH
-  echo 'export PATH=$HOME/.local/share/dfx/bin:$PATH' >> ~/.bashrc
-  source ~/.bashrc
   # Start the IC
   dfx --version
   dfx start --background
